@@ -7,4 +7,3 @@ Werkzeug==0.9.6
 argparse==1.2.1
 itsdangerous==0.24
 wsgiref==0.1.2
-WTForms==2.0.1
