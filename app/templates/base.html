@@ -30,10 +30,6 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             {{ nav_link('index', 'Home') }}
-            {{ nav_link('python', 'Python') }}
-            {{ nav_link('flask', 'Flask') }}
-            {{ nav_link('extensions', 'Extensions') }}
-            {{ nav_link('gifs', 'Gifs') }}
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li class="dropdown">
@@ -55,9 +51,6 @@
     <div class="container">
       <h2>Chadev Python user group!</h2>
       <a href="{{ url_for('index') }}">Home |</a>
-      <a href="{{ url_for('python') }}">Python |</a>
-      <a href="{{ url_for('flask') }}">Flask |</a>
-      <a href="{{ url_for('extensions') }}">Extensions</a>
       <br><br><br>
       {% block content %}{% endblock %}
       <br><br><br><br>
