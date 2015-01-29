@@ -36,7 +36,7 @@ Install project by running:
     cd cpl-zones
     virtualenv env
     . env/bin/activate
-    pip install -r requirements
+    pip install -r requirements.txt
     cd app
     python app.py
 
