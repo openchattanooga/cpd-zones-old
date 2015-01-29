@@ -21,9 +21,9 @@ Features
 
 Requirements
 ------------
-Python 2.7
-Virtualenv
-Pip
+Python 2.7    
+Virtualenv    
+Pip    
 
 Installation
 ------------
