@@ -21,9 +21,9 @@ Features
 
 Requirements
 ------------
-Python 2.7    
-Virtualenv    
-Pip    
+- [Python 2.7](https://www.python.org/)
+- [Virtualenv](https://virtualenv.pypa.io/en/latest/)
+- [Pip](https://pip.pypa.io/en/latest/installing.html)
 
 Installation
 ------------
