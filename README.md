@@ -38,7 +38,7 @@ Install project by running:
     . env/bin/activate
     pip install -r requirements
     cd app
-    ./app.py
+    python app.py
 
 open web browser to localhost:5000
 
