@@ -1,17 +1,8 @@
 README template
 ========
 
+Info about project..
 
-
-
-project will solve your problem of where to start with documentation,
-by providing a basic explanation of how to do it easily.
-
-Look how easy it is to use:
-
-    import project
-    # Get your stuff done
-    project.do_stuff()
 
 Features
 --------
@@ -38,10 +29,13 @@ Install project by running:
     . env/bin/activate
     pip install -r requirements.txt
     cd app
+
+Once installed make sure the virtualenv is activated,    
+and at the terminal run..
+    
     python app.py
 
-open web browser to localhost:5000
-
+Open web browser to localhost:5000
 
 Contribute
 ----------
@@ -53,7 +47,7 @@ Support
 -------
 
 If you are having issues, please let us know.
-We have a mailing list located at: project@google-groups.com
+
 
 License
 -------
