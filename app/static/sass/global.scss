@@ -1,0 +1,16 @@
+@import "vendor/bourbon/bourbon";
+@import "vendor/neat/neat";
+@import "base/base";
+
+main {
+  @include outer-container;
+}
+
+input {
+  max-width: 80%;
+}
+
+#map {
+  width: 100%;
+  min-height: 500px;
+}
