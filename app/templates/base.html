@@ -4,14 +4,22 @@
 <html>
   <head>
     <title>Flask Template Example</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
     <style type="text/css">
       .container {
         max-width: 500px;
         padding-top: 100px;
       }
       h2 {color: red;}
+      #map {
+        width: 500px;
+        height: 500px;
+      }
     </style>
   </head>
   <body>
@@ -53,8 +61,16 @@
       {# <a href="{{ url_for('index') }}">Home |</a> #}
       <br><br><br>
       {% block content %}{% endblock %}
+
+
+
+
+
     </div>
+
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
   </body>
 </html>

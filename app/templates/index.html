@@ -2,14 +2,17 @@
 
 {% block content %}
 <form action="" method="post" name="query">
-      {{ form.hidden_tag() }}
-      <p>
-          Search zones:<br>
-          {{ form.query(size=20) }}<br>
-          {% for error in form.query.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-          {% endfor %}<br>
-          <input type="submit" value="Submit">
-      </p>
-  </form>
+  {{ form.hidden_tag() }}
+  <p>
+      Search zones:<br>
+      {{ form.query(size=20) }}<br>
+      {% for error in form.query.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+      {% endfor %}<br>
+      <input type="submit" value="Submit">
+  </p>
+</form>
+
+<div id="map"></div>
+
 {% endblock %}

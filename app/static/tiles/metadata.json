@@ -1,0 +1,12 @@
+{
+    "attribution": "Data \u00a9 OpenStreetMap (and) contributors, CC-BY-SA", 
+    "description": "", 
+    "bounds": "-85.4719,34.9816,-85.0462,35.217", 
+    "name": "Chattanooga Police Department Zones", 
+    "minzoom": "0", 
+    "version": "1.0.0", 
+    "template": "", 
+    "maxzoom": "18", 
+    "legend": "<strong>Hi</strong>", 
+    "center": "-85.241,35.0657,12"
+}
