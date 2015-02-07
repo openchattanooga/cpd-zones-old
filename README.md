@@ -1,55 +1,45 @@
-README template
-========
+# CPD Zones Flask App
 
-Info about project..
+(add info about project)
 
+# Requirements
 
-Features
---------
-
-- Be awesome
-- Make things faster
-
-Requirements
-------------
 - [Python 2.7](https://www.python.org/)
 - [Virtualenv](https://virtualenv.pypa.io/en/latest/)
 - [Pip](https://pip.pypa.io/en/latest/installing.html)
 
-Installation
-------------
+# Installation
 
-Install project by running:
+~~~ sh
+# Clone repo and cd to repo
+git clone git@github.com:openchattanooga/cpl-zones.git cpl-zones && cd cpl-zones
 
-    mkdir project
-    cd project
-    git clone git@github.com:openchattanooga/cpl-zones.git
-    cd cpl-zones
-    virtualenv env
-    . env/bin/activate
-    pip install -r requirements.txt
-    cd app
+# Create virtual environment
+virtualenv env
 
-Once installed make sure the virtualenv is activated,    
-and at the terminal run..
-    
-    python app.py
+# Activate virtual environment
+. env/bin/activate
 
-Open web browser to localhost:5000
+# Install project dependencies
+pip install -r requirements.txt
 
-Contribute
-----------
+# Run project
+python app/app.py
+
+# Open web browser to localhost:5000
+open http://localhost:5000
+~~~
+
+## Contribute
 
 - Issue Tracker: github.com/openchattanooga/cpl-zones/issues
 - Source Code: github.com/openchattanooga/cpl-zones
 
-Support
--------
+## Support
 
 If you are having issues, please let us know.
 
 
-License
--------
+## License
 
 The project is licensed under the X license.
