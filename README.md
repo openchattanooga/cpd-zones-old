@@ -1,6 +1,13 @@
 # CPD Zones Flask App
 
-(add info about project)
+This application is meant to help Chattanoogans find which CPD zone they live in.
+
+Type in your address in the application and it will display:
+
+  * The CPD zone you live in
+  * The CPD Captain that is assigned to your zone.
+  * The CPD Lieutenant that is assigned to your zone.
+  * The contact information (e-mail, phone) for the CPD Captain and Lieutenant so that they can be contacted for non-emergencies.
 
 # Requirements
 
