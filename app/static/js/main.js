@@ -14,4 +14,4 @@ var map = L.map('map', {
 L.tileLayer('static/tiles/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Zone data &copy; City of Chattanooga, Imagery © <a href="http://mapbox.com">Mapbox</a>'}).addTo(map);
 
-map.fitBounds(bounds);
+r
