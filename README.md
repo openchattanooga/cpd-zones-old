@@ -9,17 +9,17 @@ Type in your address in the application and it will display:
   * The CPD Lieutenant that is assigned to your zone.
   * The contact information (e-mail, phone) for the CPD Captain and Lieutenant so that they can be contacted for non-emergencies.
 
-# Requirements
+## Requirements
 
 - [Python 2.7](https://www.python.org/)
 - [Virtualenv](https://virtualenv.pypa.io/en/latest/)
 - [Pip](https://pip.pypa.io/en/latest/installing.html)
 
-# Installation
+## Installation
 
 ~~~ sh
 # Clone repo and cd to repo
-git clone git@github.com:openchattanooga/cpl-zones.git cpl-zones && cd cpl-zones
+git clone git@github.com:openchattanooga/cpd-zones.git cpd-zones && cd cpd-zones
 
 # Create virtual environment
 virtualenv env
@@ -39,8 +39,8 @@ open http://localhost:5000
 
 ## Contribute
 
-- Issue Tracker: github.com/openchattanooga/cpl-zones/issues
-- Source Code: github.com/openchattanooga/cpl-zones
+- [Issue Tracker](github.com/openchattanooga/cpd-zones/issues)
+- [Source Code](github.com/openchattanooga/cpd-zones)
 
 ## Support
 
