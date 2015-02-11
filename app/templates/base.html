@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CPD-Zones</title>
+    <title>CPD Zones</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width initial-scale=1" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,13 +12,22 @@
   </head>
   <body>
 
+    <header>
+      <div class="wrapper">
+        <h1>CPD Zones</h1>
+      </div>
+    </header>
+
     <main role="main">
-
-      <h1>CPD-Zones</h1>
-
       {% block content %}{% endblock %}
-
     </main>
+
+    <footer>
+      <div class="wrapper">
+        <img src="static/images/open-chattanooga-logo.png" alt="Open Chattanooga Logo">
+        <p>Built with &#10084; for <a href="http://www.chattanooga.gov/">CHA</a> by the <a href="http://openchattanooga.com">Open Chattanooga Brigade</a> – Source on <a href="https://github.com/openchattanooga/cpd-zones">Github</a></p>
+      </div>
+    </footer>
 
     <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>

@@ -1,5 +1,8 @@
 // Typography
-$base-font-family: $helvetica;
+@import url(http://fonts.googleapis.com/css?family=Merriweather:400italic,400,900,700,700italic,900italic);
+$merriweather: 'Merriweather', serif;
+
+$base-font-family: $merriweather;
 $heading-font-family: $base-font-family;
 
 // Font Sizes
