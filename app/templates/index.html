@@ -1,11 +1,13 @@
 {% extends "base.html" %}
-
 {% block content %}
+
+<h1>Find out who patrols your neighborhood.</h1>
+<p>This application is meant to help Chattanoogans find which CPD zone they live in. Type in your address to get started.</p>
+
 <form action="" method="post" name="query">
   {{ form.hidden_tag() }}
   <p>
-      Search zones:<br>
-      {{ form.query(size=20) }}<br>
+      {{ form.query(placeholder="Enter your address") }}
       {% for error in form.query.errors %}
         <span style="color: red;">[{{ error }}]</span>
       {% endfor %}
