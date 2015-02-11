@@ -2,15 +2,52 @@
 @import "vendor/neat/neat";
 @import "base/base";
 
+body { margin: 0; }
+
+header {
+  background-color: #eee;
+  padding: 2em;
+  margin-bottom: 3em;
+
+  .wrapper {
+    @include outer-container;
+  }
+
+}
+
 main {
   @include outer-container;
 }
 
-input {
-  max-width: 80%;
+footer {
+  background-color: #eee;
+  padding: 2em;
+  margin-top: 3em;
+
+  .wrapper {
+    @include outer-container;
+  }
+
+}
+
+form {
+  @include span-columns(8);
+  @include omega();
+
+  #query {
+    @include span-columns(8);
+  }
+
+  input[type=submit] {
+    @include span-columns(2);
+    @include omega();
+  }
+
 }
 
 #map {
-  width: 100%;
+  @include span-columns(12);
+  @include omega();
   min-height: 500px;
+  margin-top: 2em;
 }
