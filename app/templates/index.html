@@ -1,5 +1,5 @@
-{% extends "base.html" %}
-{% block content %}
+% extends "base.html"
+% block content
 
 <h1>Find out who patrols your neighborhood.</h1>
 <p>This application is meant to help Chattanoogans find which CPD zone they live in. Type in your address to get started.</p>
@@ -8,13 +8,13 @@
   {{ form.hidden_tag() }}
   <p>
       {{ form.query(placeholder="Enter your address") }}
-      {% for error in form.query.errors %}
+      % for error in form.query.errors
         <span style="color: red;">[{{ error }}]</span>
-      {% endfor %}
+      % endfor
       <input type="submit" value="Submit">
   </p>
 </form>
 
 <div id="map"></div>
 
-{% endblock %}
+% endblock
