@@ -2,44 +2,90 @@
 @import "vendor/neat/neat";
 @import "base/base";
 
+.container {
+  @include outer-container;
+  @include pad( 0 1.5em);
+}
+
+
 body { margin: 0; }
 
 header {
-  background-color: #eee;
-  padding: 2em;
+  background-color: $action-color;
+  padding: 2em 0;
   margin-bottom: 3em;
 
   .wrapper {
-    @include outer-container;
+    @extend .container;
+  }
+
+  h1 {
+    font-weight: 400;
+    font-size: em(32);
+    color: white;
+    margin: 0;
   }
 
 }
 
 main {
-  @include outer-container;
+  @extend .container;
+
+  h1 {
+    @include span-columns(9);
+    @include omega();
+  }
+
+  p {
+    @include span-columns(9);
+    @include omega();
+  }
+
 }
 
 footer {
-  background-color: #eee;
-  padding: 2em;
+  background-color: $light-gray;
+  padding: 2em 0;
   margin-top: 3em;
 
   .wrapper {
-    @include outer-container;
+    @extend .container;
+  }
+
+  img {
+    @include span-columns(3);
+  }
+
+  p {
+    @include span-columns(9);
+    @include omega();
+    font-size: 1em;
+    text-align: right;
   }
 
 }
 
 form {
-  @include span-columns(8);
+  @include span-columns(9);
   @include omega();
 
   #query {
-    @include span-columns(8);
+    width: 70%;
+    float: left;
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
   }
 
   input[type=submit] {
-    @include span-columns(2);
+    float: left;
+    border-top-right-radius: $base-border-size;
+    border-bottom-right-radius: $base-border-size;
+  }
+
+  span {
+    color: $red;
+    @include span-columns(12);
     @include omega();
   }
 
@@ -50,4 +96,5 @@ form {
   @include omega();
   min-height: 500px;
   margin-top: 2em;
+  border: $base-border;
 }
