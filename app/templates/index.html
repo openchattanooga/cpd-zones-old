@@ -15,6 +15,10 @@
   </p>
 </form>
 
+% if cordinates
+    {{ cordinates['lat'] }}, {{ cordinates['lng'] }}
+% endif
+
 <div id="map"></div>
 
 % endblock
