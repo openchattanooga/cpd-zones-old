@@ -1,7 +1,7 @@
-{% macro nav_link(endpoint, name) %}
-{% if request.endpoint.endswith(endpoint) %}
+% macro nav_link(endpoint, name)
+% if request.endpoint.endswith(endpoint)
   <li class="active"><a href="{{ url_for(endpoint) }}">{{name}}</a></li>
-{% else %}
+% else
   <li><a href="{{ url_for(endpoint) }}">{{name}}</a></li>
-{% endif %}
-{% endmacro %}
+% endif
+% endmacro

@@ -21,7 +21,9 @@ migrate = Migrate(app, db)
 manager = Manager(app)
 manager.add_command('db', MigrateCommand)
 
-
+# custom jinja line delimeters
+app.jinja_env.line_statement_prefix = '%'
+app.jinja_env.line_comment_prefix = '##'
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
