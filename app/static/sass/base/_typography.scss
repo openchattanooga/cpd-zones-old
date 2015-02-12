@@ -15,13 +15,27 @@ h5,
 h6 {
   font-family: $heading-font-family;
   font-size: $base-font-size;
+  font-weight: 400;
   line-height: $heading-line-height;
-  margin: 0 0 $small-spacing;
+  margin: 0;
+}
+
+h1 {
+   font-size: em(72);
+}
+
+h2 {
+  font-size: em(36);
+}
+
+h3 {
+  font-size: em(36);
 }
 
 p {
-  margin: 0 0 $small-spacing;
+  font-size: em(21);
 }
+
 
 a {
   color: $action-color;
@@ -38,14 +52,6 @@ a {
   &:focus {
     outline: none;
   }
-}
-
-hr {
-  border-bottom: $base-border;
-  border-left: none;
-  border-right: none;
-  border-top: none;
-  margin: $base-spacing 0;
 }
 
 img,
