@@ -30,8 +30,11 @@ virtualenv env
 # Install project dependencies
 pip install -r requirements.txt
 
+# Run migrations
+DATABASE_URL=postgres://myusername:mypassword@localhost/mydatabase python app.py db upgrade
+
 # Run project
-python app/app.py
+DATABASE_URL=postgres://myusername:mypassword@localhost/mydatabase python app.py db upgrade
 
 # Open web browser to localhost:5000
 open http://localhost:5000
