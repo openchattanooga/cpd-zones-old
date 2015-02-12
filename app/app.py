@@ -32,6 +32,10 @@ class Zone(db.Model):
     name = db.Column(db.Unicode(length=200), autoincrement=False, nullable=False)
     geog = db.Column(geo.Geography(geometry_type='MULTIPOLYGON', srid='4326'))
 
+    def __init__(self, name, geog):
+        self.name = name
+        self.geog = geog
+
 class Officer(db.Model):
     __tablename__ = 'officers'
     id = db.Column(db.Integer, primary_key=True)
@@ -39,6 +43,12 @@ class Officer(db.Model):
     email = db.Column(db.Unicode(length=200), nullable=False)
     phone = db.Column(db.Unicode(length=200), nullable=False)
     title = db.Column(db.Unicode(length=200), nullable=False)
+
+    def __init__(self, name, email, phone, title):
+        self.name = name
+        self.email = email
+        self.phone = phone
+        self.title = title
 
 def decode_address_to_coordinates(address):
     params = {
