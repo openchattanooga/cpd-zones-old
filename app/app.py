@@ -3,6 +3,7 @@ import os
 import urllib, urllib2
 import json
 import random
+import geoalchemy2 as geo
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.script import Manager
@@ -24,6 +25,20 @@ manager.add_command('db', MigrateCommand)
 # custom jinja line delimeters
 app.jinja_env.line_statement_prefix = '%'
 app.jinja_env.line_comment_prefix = '##'
+
+class Zone(db.Model):
+    __tablename__ = 'zones'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Unicode(length=200), autoincrement=False, nullable=False)
+    geog = db.Column(geo.Geography(geometry_type='MULTIPOLYGON', srid='4326'))
+
+class Officer(db.Model):
+    __tablename__ = 'officers'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.Unicode(length=200), nullable=False)
+    email = db.Column(db.Unicode(length=200), nullable=False)
+    phone = db.Column(db.Unicode(length=200), nullable=False)
+    title = db.Column(db.Unicode(length=200), nullable=False)
 
 def decode_address_to_coordinates(address):
     params = {
