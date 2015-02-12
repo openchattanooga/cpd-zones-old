@@ -42,6 +42,7 @@ def decode_address_to_coordinates(address):
 def index():
     form = SearchForm()
     data = {}
+    cordinates = None
     if form.validate_on_submit():
         query = form.query.data
         cordinates = decode_address_to_coordinates(query)
