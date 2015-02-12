@@ -6,13 +6,11 @@
 
 <form action="" method="post" name="query">
   {{ form.hidden_tag() }}
-  <p>
-      {{ form.query(placeholder="Enter your address") }}
-      {% for error in form.query.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-      {% endfor %}
-      <input type="submit" value="Submit">
-  </p>
+  {{ form.query(placeholder="Enter your address") }}
+  <input type="submit" value="Locate">
+  {% for error in form.query.errors %}
+    <span>{{ error }}</span>
+  {% endfor %}
 </form>
 
 <div id="map"></div>
