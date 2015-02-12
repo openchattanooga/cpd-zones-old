@@ -15,9 +15,9 @@ import sqlalchemy as sa
 
 
 def upgrade():
-    op.execute("CREATE EXTENSION postgis;")
-    op.execute("CREATE EXTENSION postgis_topology;")
+    op.execute("CREATE EXTENSION IF NOT EXISTS postgis;")
+    op.execute("CREATE EXTENSION IF NOT EXISTS postgis_topology;")
 
 def downgrade():
-    op.execute("DROP EXTENSION postgis_topology;")
-    op.execute("DROP EXTENSION postgis;")
+    op.execute("DROP EXTENSION IF EXISTS postgis_topology;")
+    op.execute("DROP EXTENSION IF EXISTS postgis;")
