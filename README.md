@@ -52,7 +52,7 @@ open http://localhost:5000
 
 ## Support
 
-If you are having issues, please let us know.
+If you are having issues, please let us know!
 
 
 ## License
