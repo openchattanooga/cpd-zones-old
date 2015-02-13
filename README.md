@@ -33,6 +33,9 @@ pip install -r requirements.txt
 # Run migrations
 DATABASE_URL=postgres://myusername:mypassword@localhost/mydatabase python app.py db upgrade
 
+# Load Data (also flushes database)
+DATABASE_URL=postgres://myusername:mypassword@localhost/mydatabase python app.py reset_data
+
 # Run project
 DATABASE_URL=postgres://myusername:mypassword@localhost/mydatabase python app.py db upgrade
 
