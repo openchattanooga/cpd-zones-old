@@ -4,6 +4,7 @@ import urllib, urllib2
 import json
 import random
 import geoalchemy2 as geo
+from shapely.geometry import asShape
 from geoalchemy2.shape import from_shape
 import geojson
 from flask import Flask
