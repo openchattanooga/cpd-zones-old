@@ -30,11 +30,21 @@ class Zone(db.Model):
     __tablename__ = 'zones'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.Unicode(length=200), autoincrement=False, nullable=False)
-    geog = db.Column(geo.Geography(geometry_type='MULTIPOLYGON', srid='4326'))
+    regions = db.relationship("Region")
 
     def __init__(self, name, geog):
         self.name = name
         self.geog = geog
+
+class Region(db.Model):
+    __tablename__ = 'regions'
+    id = db.Column(db.Integer, primary_key=True)
+    geog = db.Column(geo.Geography(geometry_type='POLYGON', srid='4326'))
+    zone_id = db.Column(db.Integer, db.ForeignKey('zones.id'))
+
+    def __init__(self, geog, zone_id):
+        self.geog = geog
+        self.zone_id = zone_id
 
 class Officer(db.Model):
     __tablename__ = 'officers'
