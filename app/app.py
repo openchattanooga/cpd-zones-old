@@ -90,6 +90,70 @@ def decode_address_to_coordinates(address):
     except:
             return None
 
+@manager.command
+def reset_data():
+    app_path = os.path.realpath(__file__)
+    geojson_path = os.path.dirname(app_path) + "/../CPDZones.geojson"
+
+    print "Deleting data if it exists."
+
+    ZoneAssignment.query.delete()
+    Officer.query.delete()
+    Region.query.delete()
+    Zone.query.delete()
+
+    print "Loading data"
+
+    fjson = geojson.load(open(geojson_path))
+    for i in fjson.features:
+        captain = Officer(i.properties['CAPT'], u'', u'', u'Captain') 
+        lt = Officer(i.properties['LT'], u'', u'', u'Lieutenant')
+        zone = Zone(i.properties['CPD_Zone'])
+
+        db.session.add(zone)
+
+        capq = db.session.query(Officer).filter(Officer.name == i.properties['CAPT'])
+        ltq = db.session.query(Officer).filter(Officer.name == i.properties['LT'])
+
+        # Create Captain and/or Lieutenant if they don't exist.
+        if not db.session.query(capq.exists()).scalar():
+            db.session.add(captain)
+        else:
+            captain = Officer.query.filter_by(name=i.properties['CAPT']).first()
+
+        if not db.session.query(ltq.exists()).scalar():
+            db.session.add(lt)
+        else:
+            lt = Officer.query.filter_by(name=i.properties['LT']).first()
+
+        db.session.commit()
+
+        capt_assignment = ZoneAssignment(zone.id, captain.id)
+        lt_assignment = ZoneAssignment(zone.id, lt.id)
+
+        db.session.add(capt_assignment)
+        db.session.add(lt_assignment)
+
+        db.session.commit()
+
+        if i.geometry.type == "MultiPolygon":
+            polys = []
+            for k in i.geometry.coordinates:
+                kpolygon = geojson.Polygon(k)
+                polys.append(Region(from_shape(asShape(kpolygon)), zone.id))
+
+            db.session.add_all(polys)
+            db.session.commit()
+        elif i.geometry.type == "Polygon":
+            poly = Region(from_shape(asShape(i.geometry)), zone.id)
+            db.session.add(poly)
+            db.session.commit()
+        else:
+            # Can't really handle it..
+            pass
+
+    print "Done"
+
 @app.route("/", methods=['GET', 'POST'])
 def index():
     form = SearchForm()
