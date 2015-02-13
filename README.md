@@ -14,6 +14,8 @@ Type in your address in the application and it will display:
 - [Python 2.7](https://www.python.org/)
 - [Virtualenv](https://virtualenv.pypa.io/en/latest/)
 - [Pip](https://pip.pypa.io/en/latest/installing.html)
+- [Postgres](http://www.postgresql.org/)
+- [PostGIS](http://postgis.net/)
 
 ## Installation
 
@@ -34,7 +36,7 @@ pip install -r requirements.txt
 DATABASE_URL=postgres://myusername:mypassword@localhost/mydatabase python app.py db upgrade
 
 # Run project
-DATABASE_URL=postgres://myusername:mypassword@localhost/mydatabase python app.py db upgrade
+DATABASE_URL=postgres://myusername:mypassword@localhost/mydatabase python app.py runserver
 
 # Open web browser to localhost:5000
 open http://localhost:5000
