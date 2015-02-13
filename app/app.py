@@ -4,6 +4,9 @@ import urllib, urllib2
 import json
 import random
 import geoalchemy2 as geo
+from shapely.geometry import asShape
+from geoalchemy2.shape import from_shape
+import geojson
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask.ext.script import Manager
@@ -33,15 +36,15 @@ class Zone(db.Model):
     regions = db.relationship("Region")
 
 
-    def __init__(self, name, geog):
+    def __init__(self, name):
         self.name = name
-        self.geog = geog
 
 class Region(db.Model):
     __tablename__ = 'regions'
     id = db.Column(db.Integer, primary_key=True)
     geog = db.Column(geo.Geography(geometry_type='POLYGON', srid='4326'))
     zone_id = db.Column(db.Integer, db.ForeignKey('zones.id'))
+    zone = db.relationship("Zone")
 
     def __init__(self, geog, zone_id):
         self.geog = geog
@@ -70,6 +73,10 @@ class ZoneAssignment(db.Model):
     zone = db.relationship(Zone, backref="zone_assignments")
     officer = db.relationship(Officer, backref="zone_assignments")
 
+    def __init__(self, zone_id, officer_id):
+        self.zone_id = zone_id
+        self.officer_id = officer_id
+
 def decode_address_to_coordinates(address):
     params = {
             'address' : address,
@@ -82,6 +89,70 @@ def decode_address_to_coordinates(address):
             return result['results'][0]['geometry']['location']
     except:
             return None
+
+@manager.command
+def reset_data():
+    app_path = os.path.realpath(__file__)
+    geojson_path = os.path.dirname(app_path) + "/../CPDZones.geojson"
+
+    print "Deleting data if it exists."
+
+    ZoneAssignment.query.delete()
+    Officer.query.delete()
+    Region.query.delete()
+    Zone.query.delete()
+
+    print "Loading data"
+
+    fjson = geojson.load(open(geojson_path))
+    for i in fjson.features:
+        captain = Officer(i.properties['CAPT'], u'', u'', u'Captain') 
+        lt = Officer(i.properties['LT'], u'', u'', u'Lieutenant')
+        zone = Zone(i.properties['CPD_Zone'])
+
+        db.session.add(zone)
+
+        capq = db.session.query(Officer).filter(Officer.name == i.properties['CAPT'])
+        ltq = db.session.query(Officer).filter(Officer.name == i.properties['LT'])
+
+        # Create Captain and/or Lieutenant if they don't exist.
+        if not db.session.query(capq.exists()).scalar():
+            db.session.add(captain)
+        else:
+            captain = Officer.query.filter_by(name=i.properties['CAPT']).first()
+
+        if not db.session.query(ltq.exists()).scalar():
+            db.session.add(lt)
+        else:
+            lt = Officer.query.filter_by(name=i.properties['LT']).first()
+
+        db.session.commit()
+
+        capt_assignment = ZoneAssignment(zone.id, captain.id)
+        lt_assignment = ZoneAssignment(zone.id, lt.id)
+
+        db.session.add(capt_assignment)
+        db.session.add(lt_assignment)
+
+        db.session.commit()
+
+        if i.geometry.type == "MultiPolygon":
+            polys = []
+            for k in i.geometry.coordinates:
+                kpolygon = geojson.Polygon(k)
+                polys.append(Region(from_shape(asShape(kpolygon)), zone.id))
+
+            db.session.add_all(polys)
+            db.session.commit()
+        elif i.geometry.type == "Polygon":
+            poly = Region(from_shape(asShape(i.geometry)), zone.id)
+            db.session.add(poly)
+            db.session.commit()
+        else:
+            # Can't really handle it..
+            pass
+
+    print "Done"
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
