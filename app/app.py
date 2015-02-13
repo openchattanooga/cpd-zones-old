@@ -32,6 +32,7 @@ class Zone(db.Model):
     name = db.Column(db.Unicode(length=200), autoincrement=False, nullable=False)
     regions = db.relationship("Region")
 
+
     def __init__(self, name, geog):
         self.name = name
         self.geog = geog
@@ -59,6 +60,15 @@ class Officer(db.Model):
         self.email = email
         self.phone = phone
         self.title = title
+
+class ZoneAssignment(db.Model):
+    __tablename__ = 'zone_assignments'
+    id = db.Column(db.Integer, primary_key=True)
+    zone_id = db.Column(db.Integer, db.ForeignKey('zones.id'))
+    officer_id = db.Column(db.Integer, db.ForeignKey('officers.id'))
+
+    zone = db.relationship(Zone, backref="zone_assignments")
+    officer = db.relationship(Officer, backref="zone_assignments")
 
 def decode_address_to_coordinates(address):
     params = {
