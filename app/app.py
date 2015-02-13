@@ -32,7 +32,7 @@ app.jinja_env.line_comment_prefix = '##'
 class Zone(db.Model):
     __tablename__ = 'zones'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Unicode(length=200), autoincrement=False, nullable=False)
+    name = db.Column(db.Unicode(length=200), nullable=False)
     regions = db.relationship("Region")
 
 
