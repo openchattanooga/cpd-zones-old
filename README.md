@@ -57,4 +57,5 @@ If you are having issues, please let us know!
 
 ## License
 
-The project is licensed under the X license.
+The project is licensed under the MIT license. See `LICENSE.md` for more details."
+
