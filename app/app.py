@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import os
 import urllib, urllib2
 import json
@@ -13,11 +15,11 @@ from flask.ext.script import Manager
 from flask.ext.migrate import Migrate, MigrateCommand
 from flask import render_template
 from forms import SearchForm
+from config import config
 
 app = Flask(__name__)
-app.secret_key = 'some_secret_key'
-
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+app.secret_key = config.SECRET_KEY
+app.config['SQLALCHEMY_DATABASE_URI'] = config.DATABASE_URL
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -106,7 +108,7 @@ def reset_data():
 
     fjson = geojson.load(open(geojson_path))
     for i in fjson.features:
-        captain = Officer(i.properties['CAPT'], u'', u'', u'Captain') 
+        captain = Officer(i.properties['CAPT'], u'', u'', u'Captain')
         lt = Officer(i.properties['LT'], u'', u'', u'Lieutenant')
         zone = Zone(i.properties['CPD_Zone'])
 
