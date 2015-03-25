@@ -11,6 +11,7 @@ from geoalchemy2.shape import from_shape
 import geojson
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
+from sqlalchemy import func
 from flask.ext.script import Manager, Server
 from flask.ext.migrate import Migrate, MigrateCommand
 from flask import render_template
@@ -78,6 +79,16 @@ class ZoneAssignment(db.Model):
     def __init__(self, zone_id, officer_id):
         self.zone_id = zone_id
         self.officer_id = officer_id
+
+def find_in_zone(lat, lon):
+    result = Region.query.filter(
+        Region.geog.ST_Covers(
+            func.ST_GeomFromText(
+                func.Concat('POINT(', lon, ' ', lat, ')'),4326))).first()
+    if result == None:
+      return None
+    else:
+      return result.zone_id
 
 def decode_address_to_coordinates(address):
     params = {
