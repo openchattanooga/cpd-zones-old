@@ -21,3 +21,5 @@ else:
     # production server environment variables
     config.DATABASE_URL = os.environ.get('DATABASE_URL')
     config.SECRET_KEY = os.environ.get('SECRET_KEY')
+    config.DEBUG = False
+    config.RELOAD = False
