@@ -11,7 +11,7 @@ from geoalchemy2.shape import from_shape
 import geojson
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
-from flask.ext.script import Manager
+from flask.ext.script import Manager, Server
 from flask.ext.migrate import Migrate, MigrateCommand
 from flask import render_template
 from forms import SearchForm
@@ -166,6 +166,13 @@ def index():
         cordinates = decode_address_to_coordinates(query)
     return render_template('index.html', form=form, cordinates=cordinates)
 
+port = int(os.environ.get("PORT", 5000))
+manager.add_command("runserver", Server(
+    use_debugger=config.DEBUG,
+    use_reloader=config.RELOAD,
+    host='0.0.0.0',
+    port=port)
+)
 
 if __name__ == "__main__":
     manager.run()
