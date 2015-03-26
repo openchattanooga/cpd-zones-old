@@ -67,6 +67,9 @@ class Officer(db.Model):
         self.phone = phone
         self.title = title
 
+    def __repr__(self):
+        return self.name
+
 class ZoneAssignment(db.Model):
     __tablename__ = 'zone_assignments'
     id = db.Column(db.Integer, primary_key=True)
@@ -86,9 +89,9 @@ def find_in_zone(lat, lon):
             func.ST_GeomFromText(
                 func.Concat('POINT(', lon, ' ', lat, ')'),4326))).first()
     if result == None:
-      return None
+        return None
     else:
-      return result.zone_id
+        return result.zone_id
 
 def decode_address_to_coordinates(address):
     params = {
@@ -99,9 +102,9 @@ def decode_address_to_coordinates(address):
     response = urllib2.urlopen(url)
     result = json.load(response)
     try:
-            return result['results'][0]['geometry']['location']
+        return result['results'][0]['geometry']['location']
     except:
-            return None
+        return None
 
 @manager.command
 def reset_data():
@@ -170,12 +173,15 @@ def reset_data():
 @app.route("/", methods=['GET', 'POST'])
 def index():
     form = SearchForm()
-    data = {}
     cordinates = None
     if form.validate_on_submit():
         query = form.query.data
         cordinates = decode_address_to_coordinates(query)
-    return render_template('index.html', form=form, cordinates=cordinates)
+        zone_id = find_in_zone(cordinates['lat'], cordinates['lng'])
+        zone_info = ZoneAssignment.query.filter_by(zone_id=zone_id).all()
+        return render_template('index.html', form=form, zone_info=zone_info)
+
+    return render_template('index.html', form=form)
 
 port = int(os.environ.get("PORT", 5000))
 manager.add_command("runserver", Server(
