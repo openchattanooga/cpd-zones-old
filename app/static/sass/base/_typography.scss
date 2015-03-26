@@ -21,11 +21,27 @@ h6 {
 }
 
 h1 {
-   font-size: em(72);
+   font-size: em(44);
+
+   @include media($medium) {
+      font-size: em(54);
+   }
+
+   @include media($large) {
+      font-size: em(64);
+   }
 }
 
 h2 {
-  font-size: em(36);
+  font-size: em(16);
+
+  @include media($medium) {
+     font-size: em(26);
+  }
+
+  @include media($large) {
+     font-size: em(36);
+  }
 }
 
 h3 {
