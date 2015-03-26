@@ -25,7 +25,7 @@ else:
     config.RELOAD = False
 
 try:
-    any([config.DATABASE_URL, config.SECRET_KEY]) is None
+    any([config.DATABASE_URL, config.SECRET_KEY, config.DEBUG, config.RELOAD]) is None
 except Exception, e:
     missing_var = e.message.split()[-1]
     print 'A config variable has not been set:', missing_var
