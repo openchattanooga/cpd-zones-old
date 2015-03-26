@@ -87,7 +87,7 @@ def find_in_zone(lat, lon):
     result = Region.query.filter(
         Region.geog.ST_Covers(
             func.ST_GeomFromText(
-                func.Concat('POINT(', lon, ' ', lat, ')'),4326))).first()
+                func.Concat('POINT(', lon, ' ', lat, ')'), 4326))).first()
     if result == None:
         return None
     else:
