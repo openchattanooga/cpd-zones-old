@@ -23,3 +23,12 @@ else:
     config.SECRET_KEY = os.environ.get('SECRET_KEY')
     config.DEBUG = False
     config.RELOAD = False
+
+try:
+    any([config.DATABASE_URL, config.SECRET_KEY]) is None
+except Exception, e:
+    missing_var = e.message.split()[-1]
+    print 'A config variable has not been set:', missing_var
+    print 'This variable can be set in dev.py if in development\n' \
+          'or as an environment variable on production.'
+    raise ValueError(e)
