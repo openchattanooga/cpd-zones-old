@@ -1,50 +1,35 @@
 % extends "base.html"
 % block content
 
-<section class="intro">
-  <h1>Find out who patrols your neighborhood.</h1>
-  <p>This application helps Chattanoogans find which CPD zone they live in. Type in your address to get started.</p>
-</section>
+  <section class="intro">
+    <h1>Find out who patrols your neighborhood.</h1>
+    <p>This application helps Chattanoogans find which CPD zone they live in. Type in your address to get started.</p>
+  </section>
 
-<form action="" method="post" name="query">
-  {{ form.hidden_tag() }}
-  {{ form.query(placeholder="Enter your address") }}
-  % for error in form.query.errors
-    <span>{{ error }}</span>
-  % endfor
-  <input type="submit" value="Locate">
-</form>
+  <form action="" method="post" name="query">
+    {{ form.hidden_tag() }}
+    {{ form.query(placeholder="Enter your address") }}
+    % for error in form.query.errors
+      <span>{{ error }}</span>
+    % endfor
+    <input type="submit" value="Locate">
+  </form>
 
-  % if cordinates
-    <div class="cordinates">
-      {{ cordinates['lat'] }}, {{ cordinates['lng'] }}
+
+  % if zone_info
+    <div class="zone-results">
+      % for z in zone_info
+        <section class="card">
+          <ul>
+            <li>{{ z.officer.name }}</li>
+            <li>{{ z.officer.phone }}</li>
+            <li><a href="mailto:{{ z.officer.email }}">{{ z.officer.email }}</a></li>
+          </ul>
+        </section>
+      % endfor
     </div>
   % endif
 
-<div class="zone-results">
-  <section class="card">
-    <ul>
-      <li>John Doe</li>
-      <li>123.123.1234</li>
-      <li><a href="mailto:johndoe@gmail.com">johndoe@gmail.com</a></li>
-    </ul>
-  </section>
-  <section class="card">
-    <ul>
-      <li>Jane Doe</li>
-      <li>123.123.1234</li>
-      <li><a href="mailto:johndoe@gmail.com">janedoe@gmail.com</a></li>
-    </ul>
-  </section>
-  <section class="card">
-    <ul>
-      <li>John Doe</li>
-      <li>123.123.1234</li>
-      <li><a href="mailto:johndoe@gmail.com">johndoe@gmail.com</a></li>
-    </ul>
-  </section>
-</div>
-
-<div id="map"></div>
+  <div id="map"></div>
 
 % endblock
