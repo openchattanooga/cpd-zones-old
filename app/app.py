@@ -179,7 +179,7 @@ def index():
         cordinates = decode_address_to_coordinates(query)
         zone_id = find_in_zone(cordinates['lat'], cordinates['lng'])
         zone_info = ZoneAssignment.query.filter_by(zone_id=zone_id).all()
-        return render_template('index.html', form=form, zone_info=zone_info)
+        return render_template('index.html', form=form, zone_info=zone_info, cordinates=cordinates)
 
     return render_template('index.html', form=form)
 

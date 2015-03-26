@@ -31,5 +31,19 @@
   % endif
 
   <div id="map"></div>
+% endblock
 
+% block js
+  % if cordinates
+    <script>
+      var lat = {{ cordinates['lat'] }};
+      var lon = {{ cordinates['lng'] }};
+      var markerIcon = L.icon({
+          iconUrl: "{{ url_for('static', filename = 'images/marker.png') }}",
+          iconSize:     [60, 60], // size of the icon
+      });
+
+      L.marker([lat, lon], {icon: markerIcon}).addTo(map);
+    </script>
+  % endif
 % endblock
