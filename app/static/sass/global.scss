@@ -1,4 +1,5 @@
 @import "vendor/bourbon/bourbon";
+@import "base/grid-settings";
 @import "vendor/neat/neat";
 @import "base/base";
 
@@ -12,8 +13,18 @@ body { margin: 0; }
 
 header {
   background-color: $action-color;
-  padding: 2em 0;
-  margin-bottom: 3em;
+  padding: 1em 0;
+  margin-bottom: 1.5em;
+
+  @include media($medium) {
+    padding: 1.5em 0;
+    margin-bottom: 2.5em;
+  }
+
+  @include media($large) {
+    padding: 2em 0;
+    margin-bottom: 3em;
+  }
 
   .wrapper {
     @extend .container;
@@ -30,18 +41,114 @@ header {
 
 main {
   @extend .container;
+}
+
+.intro {
 
   h1 {
-    @include span-columns(9);
+    @include span-columns(12);
     @include omega();
+
+    @include media($medium) {
+      @include span-columns(9);
+    }
+
   }
 
   p {
-    @include span-columns(9);
+    @include span-columns(12);
+    @include omega();
+
+    @include media($medium) {
+      @include span-columns(9);
+    }
+
+  }
+
+}
+
+form {
+  @include span-columns(12);
+  @include omega();
+  position: relative;
+  font-size: 1.25em;
+
+  @include media($small) {
+    @include span-columns(10);
+  }
+
+  @include media($medium) {
+    @include span-columns(8);
+  }
+
+  @include media($large) {
+    @include span-columns(7);
+  }
+
+
+  #query {
+    width: 90%;
+    margin-bottom: 0;
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  input[type=submit] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-top-right-radius: $base-border-size;
+    border-bottom-right-radius: $base-border-size;
+  }
+
+  span {
+    color: $red;
+    @include span-columns(12);
     @include omega();
   }
 
 }
+
+.cordinates {
+  @include span-columns(12);
+  @include omega();
+  color: $red;
+}
+
+.zone-results {
+  @include span-columns(12);
+  @include omega();
+
+  .card {
+    @include span-columns(12);
+    @include omega();
+    border: $base-border;
+    padding: 1.5em;
+    margin-top: 4%;
+
+    @include media($small) {
+      @include span-columns(6);
+      @include omega(2n);
+    }
+
+    @include media($medium) {
+      @include span-columns(4);
+      @include omega-reset(2n);
+    }
+
+  }
+
+}
+
+#map {
+  @include span-columns(12);
+  @include omega();
+  min-height: 500px;
+  margin-top: 4%;
+  border: $base-border;
+}
+
 
 footer {
   background-color: $light-gray;
@@ -63,38 +170,4 @@ footer {
     text-align: right;
   }
 
-}
-
-form {
-  @include span-columns(9);
-  @include omega();
-
-  #query {
-    width: 70%;
-    float: left;
-    border-right: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  input[type=submit] {
-    float: left;
-    border-top-right-radius: $base-border-size;
-    border-bottom-right-radius: $base-border-size;
-  }
-
-  span {
-    color: $red;
-    @include span-columns(12);
-    @include omega();
-  }
-
-}
-
-#map {
-  @include span-columns(12);
-  @include omega();
-  min-height: 500px;
-  margin-top: 2em;
-  border: $base-border;
 }
