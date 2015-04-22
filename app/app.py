@@ -122,8 +122,8 @@ def reset_data():
 
     fjson = geojson.load(open(geojson_path))
     for i in fjson.features:
-        captain = Officer(i.properties['CAPT'], u'', u'', u'Captain')
-        lt = Officer(i.properties['LT'], u'', u'', u'Lieutenant')
+        captain = Officer(i.properties['CAPT'], i.properties['CAPT_EMAIL'], i.properties['CAPT_PHONE'], u'Captain')
+        lt = Officer(i.properties['LT'], i.properties['LT_EMAIL'], i.properties['LT_PHONE'], u'Lieutenant')
         zone = Zone(i.properties['CPD_Zone'])
 
         db.session.add(zone)
