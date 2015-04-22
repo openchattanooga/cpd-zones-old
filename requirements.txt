@@ -14,6 +14,7 @@ WTForms==2.0.2
 Werkzeug==0.9.6
 alembic==0.7.4
 argparse==1.2.1
+cssmin==0.2.0
 geojson==1.0.9
 gunicorn==19.2.1
 ipdb==0.8
