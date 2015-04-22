@@ -14,6 +14,7 @@ from flask.ext.sqlalchemy import SQLAlchemy
 from sqlalchemy import func
 from flask.ext.script import Manager, Server
 from flask.ext.migrate import Migrate, MigrateCommand
+from flask.ext.assets import Environment, Bundle
 from flask import render_template
 from forms import SearchForm
 from config import config
@@ -21,6 +22,20 @@ from config import config
 app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = config.DATABASE_URL
+
+assets = Environment(app)
+
+sass_cpd = Bundle('sass/*.scss',
+            filters=('scss') ,depends=('sass/*/*.scss'),
+            output='css/global.css')
+
+# minify css
+cssmin_iwss = Bundle('css/*', sass_cpd,
+            filters='cssmin', output='css/global.min.css')
+
+# register assets
+assets.register('css_all', cssmin_iwss)
+
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
